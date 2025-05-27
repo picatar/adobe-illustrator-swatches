@@ -47,7 +47,7 @@ This script for Adobe Illustrator creates a printable grid of labeled color swat
 
 ## 🧪 Example Output
 
-![Swatches Panel in Illustrator](https://github.com/picatar/adobe-illustrator-swatches/blob/main/adobe-illustatror-swatch-library.jpg)
+[![Swatches Panel in Illustrator](https://github.com/picatar/adobe-illustrator-swatches/blob/main/adobe-illustatror-swatch-library.jpg)](https://github.com/picatar/adobe-illustrator-swatches/blob/main/adobe-illustrator-swatch-library.jpg)
 
 ---
 
