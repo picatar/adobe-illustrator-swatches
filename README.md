@@ -47,17 +47,54 @@ This script for Adobe Illustrator creates a printable grid of labeled color swat
 
 ## 🧪 Example Output
 
-[![Swatches Panel in Illustrator](https://github.com/picatar/adobe-illustrator-swatches/blob/main/adobe-illustatror-swatch-library.jpg)](https://github.com/picatar/adobe-illustrator-swatches/blob/main/adobe-illustrator-swatch-library.jpg)
+![Swatches Panel in Illustrator](https://github.com/picatar/adobe-illustrator-swatches/blob/main/adobe-illustatror-swatch-library.jpg)
 
 ---
 
-## 📄 License
+## 🖥️ Script Code
 
-This project is open-source and available under the [MIT License](./LICENSE).
+```javascript
+var doc = app.activeDocument;
+var swatches = doc.swatches;
+var squareSize = 36; // 0.5 inch = 36 points
+var padding = 6; // space between swatch and label
+var textSize = 6;
+var columns = 20;
+var startX = 0;
+var startY = 0;
 
----
+var row = 0;
+var col = 0;
 
-## ✍️ Author
+for (var i = 0; i < swatches.length; i++) {
+    var swatch = swatches[i];
 
-Created by **Steven Stelter**  
-[stelterdesign.com](https://stelterdesign.com)
+    // Skip system swatches like [None], [Registration], etc.
+    if (swatch.name.charAt(0) === '[') continue;
+
+    var x = startX + col * (squareSize + padding);
+    var y = startY - row * (squareSize + 2 * padding);
+
+    // Draw the swatch square
+    var rect = doc.pathItems.rectangle(y, x, squareSize, squareSize);
+    rect.filled = true;
+    rect.fillColor = swatch.color;
+    rect.stroked = false;
+
+    // Add the swatch name as a label below the square
+    var label = doc.textFrames.add();
+    label.contents = swatch.name;
+    label.textRange.characterAttributes.size = textSize;
+    label.textRange.characterAttributes.textFont = app.textFonts.getByName("MyriadPro-Regular");
+
+    // Position label: baseline under the square
+    label.left = x;
+    label.top = y - squareSize - padding;
+
+    // Next column
+    col++;
+    if (col >= columns) {
+        col = 0;
+        row++;
+    }
+}
