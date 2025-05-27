@@ -51,6 +51,19 @@ This script for Adobe Illustrator creates a printable grid of labeled color swat
 
 ---
 
+## 📄 License
+
+This project is open-source and available under the [MIT License](./LICENSE).
+
+---
+
+## ✍️ Author
+
+Created by **Steven Stelter**  
+[stelterdesign.com](https://stelterdesign.com)
+
+---
+
 ## 🖥️ Script Code
 
 ```javascript
