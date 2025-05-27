@@ -1,28 +1,58 @@
+/**
+ * Illustrator Pantone Swatch Script
+ * Generates a labeled grid of color swatches from the current document's swatches.
+ * Each square displays the swatch color with a label underneath.
+ */
 
----
+var doc = app.activeDocument;
+var swatches = doc.swatches;
 
-### Step 2: Load the Pantone+ Solid Coated Swatches into Illustrator
+// Layout settings
+var squareSize = 36;        // Swatch square size (points) = 0.5 inch
+var padding = 6;            // Padding between swatch and label
+var textSize = 6;           // Font size for label
+var columns = 20;           // Number of swatches per row
+var startX = 0;             // Left offset
+var startY = 0;             // Top offset
 
-1. Open **Adobe Illustrator** and create a new document.
-2. Open the **Swatches** panel (`Window → Swatches`).
-3. Click the library icon at the bottom left of the Swatches panel.
-4. Navigate to:  
-**Color Books → Pantone+ Solid Coated**
-5. In the new swatch window, **click the folder icon** to add all colors to your document’s swatches.
+var row = 0;
+var col = 0;
 
----
+for (var i = 0; i < swatches.length; i++) {
+    var swatch = swatches[i];
 
-### Step 3: Run the Script in Illustrator
+    // Skip system swatches like [None], [Registration], etc.
+    if (swatch.name.charAt(0) === '[') continue;
 
-#### Option A: Run Once (Quick Start)
+    // Calculate position
+    var x = startX + col * (squareSize + padding);
+    var y = startY - row * (squareSize + 2 * padding);
 
-1. In Illustrator, go to:  
-`File → Scripts → Other Script…`
-2. Select `pantone_swatches_grid.jsx` from where you saved it.
-3. Illustrator will generate a grid of labeled swatches in your open document.
+    // Create color swatch square
+    var rect = doc.pathItems.rectangle(y, x, squareSize, squareSize);
+    rect.filled = true;
+    rect.fillColor = swatch.color;
+    rect.stroked = false;
 
-#### Option B: Install Permanently (Optional)
+    // Create label under swatch
+    var label = doc.textFrames.add();
+    label.contents = swatch.name;
+    label.textRange.characterAttributes.size = textSize;
 
-1. Copy `pantone_swatches_grid.jsx` to Illustrator’s scripts folder:
+    try {
+        label.textRange.characterAttributes.textFont = app.textFonts.getByName("MyriadPro-Regular");
+    } catch (e) {
+        // Fallback if font not available
+        label.textRange.characterAttributes.textFont = app.textFonts[0];
+    }
 
-**Windows:**
+    label.left = x;
+    label.top = y - squareSize - padding;
+
+    // Move to next column/row
+    col++;
+    if (col >= columns) {
+        col = 0;
+        row++;
+    }
+}
