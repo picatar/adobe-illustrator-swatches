@@ -1,30 +1,63 @@
-# Pantone Swatch Grid Generator for Adobe Illustrator
+# Adobe Illustrator Swatch Sheet Generator
 
-This script creates a grid of 0.5" × 0.5" color swatches in Adobe Illustrator using the **Pantone+ Solid Coated** color library. Each swatch is labeled with its Pantone name below the square.
-
-> ⚠️ Illustrator cannot access the Pantone library programmatically due to licensing restrictions. You must manually load the Pantone swatches into your document before running this script.
+This script for Adobe Illustrator creates a printable grid of labeled color swatches from the current document's swatch library — ideal for visualizing Pantone books or other color systems.
 
 ---
 
-## ✨ Features
+## 🎯 Features
 
-- Generates a grid of color swatches (0.5 inch by 0.5 inch each)
-- Labels each swatch with the Pantone name
-- Customizable layout (columns, font, spacing)
-
----
-
-## 🧰 Requirements
-
-- **Adobe Illustrator CC** (version 25 or later recommended)
-- Basic familiarity with Illustrator menus
+- Generates labeled swatch squares from all standard (non-system) swatches in the active document.
+- Automatically lays out swatches in a customizable grid.
+- Perfect for printing or digital reference of Pantone and brand color palettes.
 
 ---
 
-## 📥 How to Use This Script
+## 🖥️ How to Use
 
-### Step 1: Download the Script
+1. **Open Adobe Illustrator** and load or create a document that includes your desired swatches.
 
-1. Click the green **Code** button above and choose **Download ZIP** (or clone the repo).
-2. Unzip the file.
-3. Locate the script file:  
+   - **Note:** Pantone libraries are the intellectual property of Pantone and are **not included in newer versions of Adobe Creative Cloud** due to licensing changes.  
+     However, they **can still be found in older versions** of Adobe Illustrator or obtained through Pantone's official products.
+
+   - To import Pantone libraries in supported versions, go to:  
+     `Swatches > Open Swatch Library > Color Books > [Choose a Pantone book]`
+
+2. **Ensure your document is active** before running the script.
+
+3. **Add Pantone swatches to your Swatches panel:**
+   - Drag the desired colors from the open Pantone swatch library window into your document's Swatches panel.
+   - Remove any non-Pantone or unwanted colors from your Swatches panel to keep the palette clean.
+
+4. **Run the script:**
+   - Go to `File > Scripts > Other Script…`
+   - Select `generate-swatches.jsx` from this repository.
+
+5. **Save your swatch library as an ASE file:**
+   - In the Swatches panel, click the hamburger menu (top right).
+   - Near the bottom of the menu, select **Save Swatch Library as ASE...**
+   - Choose a folder and file name to save your custom swatch library.
+
+6. **Load your saved ASE swatch library into any Illustrator document:**
+   - Open the Swatches panel.
+   - Click the hamburger menu.
+   - Choose **Open Swatch Library > Other Library…**
+   - Navigate to your saved ASE file and open it to load the swatches.
+
+---
+
+## 🧪 Example Output
+
+![Swatches Panel in Illustrator](https://github.com/picatar/adobe-illustrator-swatches/blob/main/adobe-illustatror-swatch-library.jpg)
+
+---
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](./LICENSE).
+
+---
+
+## ✍️ Author
+
+Created by **Steven Stelter**  
+[stelterdesign.com](https://stelterdesign.com)
